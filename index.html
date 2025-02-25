@@ -36,13 +36,28 @@
     </pre>
 
     <h2>2. How the Script Works</h2>
-    <p>The script enables tab navigation using <code>ctmk-tab-link</code> attributes. Here's how you should structure your Webflow elements:</p>
+    <p>There are two ways to use this script in Webflow:</p>
+    
+    <h3>Using Webflow Tabs</h3>
+    <p>If you are using Webflow Tabs, use the <code>ctmk-tab-link</code> attribute to define the target URL:</p>
     
     <pre>
 &lt;a ctmk-tab-link="/about"&gt;Go to About&lt;/a&gt;
     </pre>
     
     <p>When clicked, the script will navigate to the URL specified in the <code>ctmk-tab-link</code> attribute.</p>
+    
+    <h3>Using Regular Links or Div Links</h3>
+    <p>If you are using normal links or div links instead of Webflow Tabs, you only need to use the <code>ctmk-child</code> and <code>ctmk-menu</code> attributes:</p>
+    
+    <pre>
+&lt;div ctmk-menu&gt;
+    &lt;a ctmk-child href="/services"&gt;Services&lt;/a&gt;
+    &lt;a ctmk-child href="/contact"&gt;Contact&lt;/a&gt;
+&lt;/div&gt;
+    </pre>
+    
+    <p>These elements will work as regular navigation links.</p>
     
     <h2>3. Adding Active States</h2>
     <p>The script automatically adds an active class to elements inside a menu:</p>
@@ -55,7 +70,7 @@
     </pre>
     
     <p>If the current page matches the <code>ctmk-tab-link</code> value, it adds the <code>ctmk-active</code> class to highlight the active link.</p>
-
+    
     <h2>4. Testing</h2>
     <p>Publish your Webflow project and click the links to test the functionality!</p>
     
