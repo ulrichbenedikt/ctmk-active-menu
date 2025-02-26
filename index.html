@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Using Cloudflare Worker Script in Webflow</title>
+    <title>CTMK Script for Webflow</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
             padding: 20px;
             max-width: 800px;
+            line-height: 1.6;
+            background-color: #080f16;
+            color:#ebebeb;
         }
         code {
-            background: #f4f4f4;
+            background: #595959;
             padding: 5px;
             border-radius: 5px;
-            flex-grow: 1;
+            font-family: monospace;
         }
         pre {
-            background: #f4f4f4;
+            background: #595959;
             padding: 10px;
             border-radius: 5px;
             overflow-x: auto;
             position: relative;
             display: flex;
-            align-items: start;
+            align-items: center;
         }
         .copy-btn {
             background: #007bff;
@@ -34,6 +37,16 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 12px;
+            margin-left: 10px;
+        }
+        img {
+            max-width: 250px;
+            margin: 20px 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        h2 {
+            margin-top: 100px
         }
     </style>
     <script>
@@ -47,46 +60,44 @@
     </script>
 </head>
 <body>
-    <h1>How to Use the Cloudflare Worker Script in Webflow</h1>
-    <p>This guide explains how to integrate the Cloudflare Worker-hosted JavaScript into Webflow.</p>
+    <h1>How to Use the Chattermark Navigation Activator in Webflow</h1>
+    <p>This script automatically highlights the active dropdown title when one of its links matches the current page URL. This helps users easily identify their current location in the menu.</p>
     
     <h2>1. Add the Script to Your Webflow Project</h2>
-    <p>Include the following script inside the <code>&lt;head&gt;</code> or before the closing <code>&lt;/body&gt;</code> tag of your Webflow project:</p>
+    <p>Include the following script in the <code>&lt;head&gt;</code> section or before the closing <code>&lt;/body&gt;</code> tag:</p>
     
-    <pre><code>&lt;script src="https://yourdomain.com/script.js" defer&gt;&lt;/script&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+    <pre><code>&lt;script src="https://ctmk-active-menu.vercel.app/active-menu.js" defer&gt;&lt;/script&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
 
-    <h2>2. How the Script Works</h2>
-    <p>There are two ways to use this script in Webflow:</p>
+    <h2>2. Setting Up the Dropdown</h2>
+    <h3>Navigation Structure</h3>
+    <p>To set up the menu, add a <code>Dropdown</code> element inside your navigation. Click on the <code>Dropdown</code>, go to Webflow settings, and add the attribute <code>ctmk-menu</code>.</p>
+    <pre><code>ctmk-menu</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+    <img src="./img/dropdown.png" />
+    <img src="./img/ctmk-menu.png" />
+
+    <h3>Styling the Active State</h3>
+    <p>Inside the <code>Dropdown</code>, locate the <code>Dropdown Toggle</code>, which represents the title element, and assign it a new class called <code>ctmk-active</code>. Style this class as needed to highlight the active state.</p>
+    <pre><code>ctmk-active</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
     
-    <h3>Using Webflow Tabs</h3>
-    <p>If you are using Webflow Tabs, use the <code>ctmk-tab-link</code> attribute to define the target URL:</p>
+    <img src="./img/class.png" />
+    <img src="./img/active-class.png" />
     
-    <pre><code>&lt;a ctmk-tab-link="/about"&gt;Go to About&lt;/a&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+    <p>Once styled, remove the <code>ctmk-active</code> class from the class list. The script will automatically apply it on page load, when needed.</p>
     
-    <p>When clicked, the script will navigate to the URL specified in the <code>ctmk-tab-link</code> attribute.</p>
+    <h2>3. Setting Up the Dropdown List</h2>
+    <h3>Adding Links Inside the Dropdown List</h3>
+    <p>Inside the <code>Dropdown List</code>, use either <code>Text Link</code> or a <code>Link Block</code>. Add the attribute <code>ctmk-child</code> to each link.</p>
+    <pre><code>ctmk-child</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+    <img src="./img/link.png" />
+    <img src="./img/ctmk-child.png" />
+
+    <h3>Alternative: Using Tabs Instead of Links</h3>
+    <p>If you're using Webflows <code>Tabs</code> element instead of a <code>Text Link</code> or <code>Link Block</code>, assign the <code>ctmk-tab-link</code> attribute to define the target URL. The script will navigate to the specified URL when clicked. Additionally, use the <code>ctmk-child</code> attribute just like with regular links from the chapter before to ensure correct highlighting.</p>
+    <pre><code>ctmk-tab-link</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+    <img src="./img/tab-link.png" />
+    <img src="./img/ctmk-tab-link.png" />
     
-    <h3>Using Regular Links or Div Links</h3>
-    <p>If you are using normal links or div links instead of Webflow Tabs, you only need to use the <code>ctmk-child</code> and <code>ctmk-menu</code> attributes:</p>
-    
-    <pre><code>&lt;div ctmk-menu&gt;
-    &lt;a ctmk-child href="/services"&gt;Services&lt;/a&gt;
-    &lt;a ctmk-child href="/contact"&gt;Contact&lt;/a&gt;
-&lt;/div&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
-    
-    <p>These elements will work as regular navigation links.</p>
-    
-    <h2>3. Adding Active States</h2>
-    <p>The script automatically adds an active class to elements inside a menu:</p>
-    
-    <pre><code>&lt;div ctmk-menu&gt;
-    &lt;a ctmk-child ctmk-tab-link="/services"&gt;Services&lt;/a&gt;
-    &lt;a ctmk-child ctmk-tab-link="/contact"&gt;Contact&lt;/a&gt;
-&lt;/div&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
-    
-    <p>If the current page matches the <code>ctmk-tab-link</code> value, it adds the <code>ctmk-active</code> class to highlight the active link.</p>
-    
-    <h2>4. Testing</h2>
-    <p>Publish your Webflow project and click the links to test the functionality!</p>
+    <p>Now, when a user clicks a tab or a link inside the dropdown, the script will highlight the corresponding dropdown title.</p>
     
 </body>
 </html>
