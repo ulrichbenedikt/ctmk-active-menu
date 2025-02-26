@@ -15,6 +15,7 @@
             background: #f4f4f4;
             padding: 5px;
             border-radius: 5px;
+            flex-grow: 1;
         }
         pre {
             background: #f4f4f4;
@@ -22,6 +23,8 @@
             border-radius: 5px;
             overflow-x: auto;
             position: relative;
+            display: flex;
+            align-items: start;
         }
         .copy-btn {
             background: #007bff;
@@ -58,7 +61,7 @@
     <h3>Using Webflow Tabs</h3>
     <p>If you are using Webflow Tabs, use the <code>ctmk-tab-link</code> attribute to define the target URL:</p>
     
-    <pre><code>&lt;a ctmk-tab-link="/about"&gt;Go to About&lt;/a&gt;</code></pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <pre><code>&lt;a ctmk-tab-link="/about"&gt;Go to About&lt;/a&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
     
     <p>When clicked, the script will navigate to the URL specified in the <code>ctmk-tab-link</code> attribute.</p>
     
@@ -68,7 +71,7 @@
     <pre><code>&lt;div ctmk-menu&gt;
     &lt;a ctmk-child href="/services"&gt;Services&lt;/a&gt;
     &lt;a ctmk-child href="/contact"&gt;Contact&lt;/a&gt;
-&lt;/div&gt;</code></pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+&lt;/div&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
     
     <p>These elements will work as regular navigation links.</p>
     
@@ -78,7 +81,7 @@
     <pre><code>&lt;div ctmk-menu&gt;
     &lt;a ctmk-child ctmk-tab-link="/services"&gt;Services&lt;/a&gt;
     &lt;a ctmk-child ctmk-tab-link="/contact"&gt;Contact&lt;/a&gt;
-&lt;/div&gt;</code></pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
+&lt;/div&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
     
     <p>If the current page matches the <code>ctmk-tab-link</code> value, it adds the <code>ctmk-active</code> class to highlight the active link.</p>
     
