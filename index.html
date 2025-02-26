@@ -21,8 +21,30 @@
             padding: 10px;
             border-radius: 5px;
             overflow-x: auto;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 12px;
         }
     </style>
+    <script>
+        function copyCode(button) {
+            let codeBlock = button.previousElementSibling.innerText;
+            navigator.clipboard.writeText(codeBlock).then(() => {
+                button.innerText = "Copied!";
+                setTimeout(() => { button.innerText = "Copy"; }, 2000);
+            });
+        }
+    </script>
 </head>
 <body>
     <h1>How to Use the Cloudflare Worker Script in Webflow</h1>
@@ -31,9 +53,7 @@
     <h2>1. Add the Script to Your Webflow Project</h2>
     <p>Include the following script inside the <code>&lt;head&gt;</code> or before the closing <code>&lt;/body&gt;</code> tag of your Webflow project:</p>
     
-    <pre>
-&lt;script src="https://yourdomain.com/script.js" defer&gt;&lt;/script&gt;
-    </pre>
+    <pre><code>&lt;script src="https://yourdomain.com/script.js" defer&gt;&lt;/script&gt;</code></pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
 
     <h2>2. How the Script Works</h2>
     <p>There are two ways to use this script in Webflow:</p>
@@ -41,33 +61,27 @@
     <h3>Using Webflow Tabs</h3>
     <p>If you are using Webflow Tabs, use the <code>ctmk-tab-link</code> attribute to define the target URL:</p>
     
-    <pre>
-&lt;a ctmk-tab-link="/about"&gt;Go to About&lt;/a&gt;
-    </pre>
+    <pre><code>&lt;a ctmk-tab-link="/about"&gt;Go to About&lt;/a&gt;</code></pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
     
     <p>When clicked, the script will navigate to the URL specified in the <code>ctmk-tab-link</code> attribute.</p>
     
     <h3>Using Regular Links or Div Links</h3>
     <p>If you are using normal links or div links instead of Webflow Tabs, you only need to use the <code>ctmk-child</code> and <code>ctmk-menu</code> attributes:</p>
     
-    <pre>
-&lt;div ctmk-menu&gt;
+    <pre><code>&lt;div ctmk-menu&gt;
     &lt;a ctmk-child href="/services"&gt;Services&lt;/a&gt;
     &lt;a ctmk-child href="/contact"&gt;Contact&lt;/a&gt;
-&lt;/div&gt;
-    </pre>
+&lt;/div&gt;</code></pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
     
     <p>These elements will work as regular navigation links.</p>
     
     <h2>3. Adding Active States</h2>
     <p>The script automatically adds an active class to elements inside a menu:</p>
     
-    <pre>
-&lt;div ctmk-menu&gt;
+    <pre><code>&lt;div ctmk-menu&gt;
     &lt;a ctmk-child ctmk-tab-link="/services"&gt;Services&lt;/a&gt;
     &lt;a ctmk-child ctmk-tab-link="/contact"&gt;Contact&lt;/a&gt;
-&lt;/div&gt;
-    </pre>
+&lt;/div&gt;</code></pre><button class="copy-btn" onclick="copyCode(this)">Copy</button>
     
     <p>If the current page matches the <code>ctmk-tab-link</code> value, it adds the <code>ctmk-active</code> class to highlight the active link.</p>
     
