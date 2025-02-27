@@ -20,6 +20,8 @@ $('[ctmk-child]').each(function(){
             addActiveClass($(this))
         }
     } else {
-        addActiveClass($(this))
+        if($(this).attr('href') == window.location.pathname){
+            addActiveClass($(this))
+        }
     }
 })
