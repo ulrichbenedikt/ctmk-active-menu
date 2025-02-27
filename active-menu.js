@@ -28,6 +28,8 @@ document.querySelectorAll('[ctmk-child]').forEach(child => {
             addActiveClass(child);
         }
     } else {
-        addActiveClass(child);
+        if (child.getAttribute('href') === window.location.pathname) {
+            addActiveClass(child);
+        }
     }
 });
